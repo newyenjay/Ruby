@@ -306,3 +306,29 @@ In the each block, make the zombie's name link to its edit page.
     </li>
   <% end %>
 </ul>
+
+
+================================================================================
+Controllers - Brain that controls the model and View
+
+Instance variable
+    * Grants view access to variable using @
+
+Example:
+
+/app/controller/tweet_controllers.rb
+    class TweetController < ApplicationController
+        def show
+            @ tweet = Tweet.find(1)
+        end
+    end
+
+/app/view/tweet/show.html.rb
+    <h1> <%= @ tweet.status %>
+    Posted by: <%= @tweet.zombie.name %>
+
+Parameters
+/tweets?status=Im dead (URL parameter)
+
+params = { status : "I'm dead" }
+@tweet = Tweet.create(status: params[:status])
